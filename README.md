@@ -22,6 +22,6 @@ This project was entirely developed with Python (version>=3.3). The required Pyt
 * SMILES_Cys.xlsx: SMILES representations of molecules for Cys-related experiments.
 * SMILES_Lys.xlsx: SMILES representations of molecules for Lys-related experiments.
 * Bioconjugation_calculator.py: Script for running the bioconjugation calculations based on the provided datasets.
-* Bioconjugation_functions.py: Contains helper functions used in bioconjugation calculations, making it easier to modularize and reuse code.
+* Bioconjugation_functions.py: Contains helper functions used in bioconjugation calculations.
 * excel_modifier.py: Script for modifying or processing the Excel files (e.g., cleaning data, transforming formats).
 * predictions.py: Script for running predictions based on processed data and model
