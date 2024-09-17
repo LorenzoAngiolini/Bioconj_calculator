@@ -31,21 +31,17 @@ cd115
 c-0302B17
 J08''')
     mAb = input("> ").upper()
-    try:
-        conc_mAb = float(input("conc_mAb (mg/mL): "))
-    except ValueError:
-        print("invalid input")
-        conc_mAb = float(input("conc_mAb (mg/mL): "))
-    mw_mAb = float(input("MW_mAb: "))
-    microL_mAb = float(input("𝜇L_mAb: "))
+    conc_mAb = get_float_input("conc_mAb (mg/mL): ")
+    mw_mAb = get_float_input("MW_mAb: ")
+    microL_mAb = get_float_input("𝜇L_mAb: ")
     buffer = input("Buffer (without pH): ").upper()
-    pH = float(input("pH: "))
+    pH = get_float_input("pH: ")
     payload = input("ID_payload: ").upper()
     smiles = input("SMILES: ")
-    mw_payload = float(input("MW_payload: "))
-    mg_payload = float(input("mg_payload: "))
-    eq_payload = float(input("eq_payload: "))
-    conc_DMSO = float(input("conc_DMSO (from 0.0 to 1.0): "))
+    mw_payload = get_float_input("MW_payload: ")
+    mg_payload = get_float_input("mg_payload: ")
+    eq_payload = get_float_input("eq_payload: ")
+    conc_DMSO = get_constrained_float_input("conc_DMSO (from 0.0 to 1.0): ", 0.0, 1.0)
     mg_mAb = ((conc_mAb * microL_mAb) / 1000)
     mmol_mAb = (mg_mAb / mw_mAb)
     mM_payload = 10
@@ -92,7 +88,7 @@ To prepare the 100 mM glycine solution, dissolve ''', round(mg_gly, 1),'''mg in 
 def in_situ():
     # defining bioconjugation conditions
     print('''Remember, it is not necessary to type the unit of measurement.
-Select one of the following mAb:
+Select one of the following mAb or type yours:
 trx (trastuzumab)
 ctx (cetuximab)
 4E1REC
@@ -100,17 +96,17 @@ cd115
 c-0302B17
 J08''')
     mAb = input("> ").upper()
-    conc_mAb = float(input("conc_mAb (mg/mL): "))
-    mw_mAb = float(input("MW_mAb: "))
-    microL_mAb = float(input("𝜇L_mAb: "))
+    conc_mAb = get_float_input("conc_mAb (mg/mL): ")
+    mw_mAb = get_float_input("MW_mAb: ")
+    microL_mAb = get_float_input("𝜇L_mAb: ")
     buffer = input("Buffer (without pH): ").upper()
-    pH = float(input("pH: "))
+    pH = get_float_input("pH: ")
     payload = input("ID_payload: ").upper()
     smiles = input("SMILES: ")
-    mw_payload = float(input("MW_payload: "))
-    mg_payload = float(input("mg_payload: "))
-    eq_payload = float(input("eq_payload: "))
-    conc_DMSO = float(input("conc_DMSO (from 0.0 to 1.0): "))
+    mw_payload = get_float_input("MW_payload: ")
+    mg_payload = get_float_input("mg_payload: ")
+    eq_payload = get_float_input("eq_payload: ")
+    conc_DMSO = get_constrained_float_input("conc_DMSO (from 0.0 to 1.0): ", 0.0, 1.0)
     # calculating the parameters
     mg_mAb = ((conc_mAb * microL_mAb) / 1000)
     mmol_mAb = (mg_mAb / mw_mAb)
@@ -154,7 +150,7 @@ Add''', round(solution[0], 2), "𝜇L of DMSO to reach a final concentration of"
 To prepare the 100 mM sulfo-NHS solution, dissolve''', round(mg_NHS, 1), '''mg in 1 mL of water.
 To prepare the 100 mM EDC-HCl solution, dissolve''', round(mg_EDC, 1), '''mg in 1 mL of water.
 To prepare the 100 mM glycine solution, dissolve ''', round(mg_gly, 1),'''mg in 1 mL of water.''')
-    lys_dataset = [mAb, payload, "NHS", buffer, pH, eq_payload]
+    lys_dataset = [mAb, payload, "insitusulfo-NHS", buffer, pH, eq_payload]
     lys_smiles = [payload, smiles]
     for col_num, values in enumerate(lys_dataset, start=1):
         sheet.cell(row=last_row + 1, column=col_num, value=values)
@@ -186,20 +182,20 @@ def bio_cys_calculator():
     J08''')
     mAb = input("> ").upper()
     conj_method = input("Conj_method('onepot' or 'dialyzed'): ").lower()
-    conc_mAb = float(input("conc_mAb (mg/mL): "))
-    mw_mAb = float(input("MW_mAb: "))
-    microL_mAb = float(input("𝜇L_mAb: "))
+    conc_mAb = get_float_input("conc_mAb (mg/mL): ")
+    mw_mAb = get_float_input("MW_mAb: ")
+    microL_mAb = get_float_input("𝜇L_mAb: ")
     reductant = input("reductant: ").upper()
-    eq_reductant = float(input("eq_reductant: "))
-    mw_reductant = float(input("MW_reductant: "))
+    eq_reductant = get_float_input("eq_reductant: ")
+    mw_reductant = get_float_input("MW_reductant: ")
     buffer = input("Buffer (without pH): ").upper()
-    pH = float(input("pH: "))
+    pH = get_float_input("pH: ")
     payload = input("ID_payload: ").upper()
     smiles = input("SMILES: ")
-    mw_payload = float(input("MW_payload: "))
-    mg_payload = float(input("mg_payload: "))
-    eq_payload = float(input("eq_payload: "))
-    conc_DMSO = float(input("conc_DMSO (from 0.0 to 1.0): "))
+    mw_payload = get_float_input("MW_payload: ")
+    mg_payload = get_float_input("mg_payload: ")
+    eq_payload = get_float_input("eq_payload: ")
+    conc_DMSO = get_constrained_float_input("conc_DMSO (from 0.0 to 1.0): ", 0.0, 0.1)
     # calculating the parameters
     mg_mAb = ((conc_mAb * microL_mAb) / 1000)
     mmol_mAb = (mg_mAb / mw_mAb)
@@ -250,3 +246,22 @@ Next, the program will ask you to define all the parameters to set the conjugati
 Do not specify the unit of measurement, it's not necessary.
 To retrieve the SMILES string of your linker-payload: open ChemDraw -> select the molecule of interest -> open the edit window -> CopyAs -> SMILES (shortcut on MacOS: ⌥ + ⌘ + c).
 ''')
+
+
+def get_float_input(prompt):
+    while True:
+        try:
+            return float(input(prompt))
+        except ValueError:
+            print("Invalid input, please enter a number.")
+
+def get_constrained_float_input(prompt, min_value, max_value):
+    while True:
+        try:
+            value = float(input(prompt))
+            if min_value <= value <= max_value:
+                return value
+            else:
+                print(f"Please enter a value between {min_value} and {max_value}.")
+        except ValueError:
+            print("Invalid input, please enter a number.")

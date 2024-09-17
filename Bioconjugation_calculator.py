@@ -3,13 +3,11 @@ from excel_modifier import excel_modifier
 from predictions import pred_lys, pred_cys
 
 print("Welcome, this is the Bioconjugation calculator!")
-#entries = int(input("How many entries to perform?: "))
-print("Define the amino acidic residue for the conjugation... if you don't know, type 'help' 😉.")
+print("Define the amino acidic residue for the conjugation... if you don't know, type 'help'.")
 
 residues = ["lys", "cys", "help"]
 options = ["yes", "no"]
 
-#for entry in range(entries):
 while True:
     residue = input("> ").lower()
     if residue == residues[2]:
