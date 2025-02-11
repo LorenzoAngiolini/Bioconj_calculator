@@ -34,7 +34,8 @@ def pred_lys():
     X_norm_train = X_norm[:-1]
     X_norm_test = X_norm[-1].reshape(1,-1)
     #model training
-    xgb = XGBRegressor()
+    xgb = xgb.XGBRegressor( colsample_bytree=1.0, learning_rate=0.3, max_depth=5, n_estimators=500,
+    reg_alpha=0.1, subsample=0.6, random_state=42 )
     xgb.fit(X_norm_train, y_train)
     pred = xgb.predict(X_norm_test)
     pred = np.round(pred,1)
@@ -75,7 +76,7 @@ def pred_cys():
     X_norm_train = X_norm[:-1]
     X_norm_test = X_norm[-1].reshape(1,-1)
     # model training
-    xgb = XGBRegressor()
+    xgb = xgb.XGBRegressor(colsample_bytree=1.0,  learning_rate=0.01,  max_depth=10,  n_estimators=500,reg_alpha=0.1,subsample=0.8, random_state=42)
     xgb.fit(X_norm_train, y_train)
     pred = xgb.predict(X_norm_test)
     pred = np.round(pred,1)
